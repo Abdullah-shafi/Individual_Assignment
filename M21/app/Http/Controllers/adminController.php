@@ -11,7 +11,7 @@ class adminController extends Controller
     
      public function index(Request $req){
       $buses = DB::table('buses')
-                   ->join('users', 'users.b_id', '=', 'buses.id')
+                   ->join('users', 'users.id', '=', 'buses.m_id')
                     ->get();
      	 return view('home.index', ['buses'=>$buses]);
       
@@ -21,7 +21,7 @@ class adminController extends Controller
        $term=$req->term;
 
       $iteams= DB::table('buses')
-            ->join('users', 'users.b_id', '=', 'buses.id')
+            ->join('users', 'users.id', '=', 'buses.m_id')
             ->where('name','like','%'.$term.'%')
             ->orwhere('location','like','%'.$term.'%')
             ->orwhere('seat_row','like','%'.$term.'%')
@@ -39,7 +39,7 @@ class adminController extends Controller
 
        $term=$req->name;
        $buses = DB::table('buses')
-                   ->join('users', 'users.b_id', '=', 'buses.id')
+                   ->join('users', 'users.id', '=', 'buses.m_id')
                    ->where('name',$term)
                    ->orwhere('location',$term)
                    ->orwhere('seat_row',$term)
