@@ -43,6 +43,10 @@ class LoginController extends Controller
                    return redirect()->route('home.index');
                }
 
+             elseif($user->role=='admin'){
+                   $req->session()->put('email', $req->email);
+                   return redirect()->route('home.index');
+               }
               else{
                    $req->session()->put('email', $req->email);
                    return redirect()->route('/system/staff');
