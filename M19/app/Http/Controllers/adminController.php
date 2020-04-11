@@ -11,7 +11,7 @@ class adminController extends Controller
     
      public function index(Request $req){
       $buses = DB::table('buses')
-                   ->join('users', 'users.b_id', '=', 'buses.id')
+                   ->join('users', 'users.id', '=', 'buses.m_id')
                     ->get();
      	 return view('home.index', ['buses'=>$buses]);
       
